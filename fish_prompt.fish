@@ -25,7 +25,7 @@ function fish_prompt
   set -l error_color      (set_color $fish_color_error ^/dev/null; or set_color red --bold)
   set -l directory_color  (set_color $fish_color_quote ^/dev/null; or set_color yellow)
   set -l repository_color (set_color $fish_color_cwd ^/dev/null; or set_color green)
-  set -l faint_color      (set_color black --bold)
+  set -l faint_color      (set_color normal)
 
   if test $last_command_status -eq 0
     echo -n -s $success_color $fish $normal_color

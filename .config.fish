@@ -1,4 +1,11 @@
-set fish_greeting
+# Ensure fisherman and plugins are installed.
+if not test -f $HOME/.config/fish/functions/fisher.fish
+  echo "==> Fisherman not found.  Installing."
+  curl -sLo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
+  fisher
+end
+
+set fish_greeting ''
 
 set -x EDITOR atom
 set -x GREP_COLOR "1;37;45"
@@ -36,18 +43,4 @@ function make_completion --argument-names alias command
     " | .
     complete -c $alias -a "(__alias_completion_$alias)"
 end
-
 make_completion g 'git'
-
-# Base16 Shell
-# if status --is-interactive
-#     eval sh $HOME/.config/base16-shell/scripts/base16-default-dark.sh
-# end
-
-# The Fuck
-eval (thefuck --alias | tr '\n' ';')
-
-# fisher
-set fisher_home ~/.local/share/fisherman
-set fisher_config ~/.config/fisherman
-source $fisher_home/config.fish
